@@ -121,7 +121,7 @@ class Parser extends BaseParser {
         return sb.toString();
     }
 
-    private int getNumber(boolean negative) {
+    private double getNumber(boolean negative) {
         skipWhitespace();
         StringBuilder sb = new StringBuilder();
         if (negative) {
@@ -130,11 +130,16 @@ class Parser extends BaseParser {
         while (between('0', '9')) {
             sb.append(take());
         }
+        if (take('.')) {
+            while (between('0', '9')) {
+                sb.append(take());
+            }
+        }
         if (between('a', 'z') || between('A', 'Z')) {
             throw new UnknownSequenceException("Unknown sequence: " + getSequence() + " at position " + getPos());
         }
         try {
-            return Integer.parseInt(sb.toString());
+            return Double.parseDouble(sb.toString());
         } catch (NumberFormatException e) {
             throw new OverflowException("Overflow for number " + sb.toString() + " at position " + getPos());
         }

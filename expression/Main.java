@@ -6,9 +6,10 @@ import expression.exceptions.ExpressionParser;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("JC 1.0.1");
+        System.out.println("usage: calculate/simplify *expression*");
+
         ExpressionParser parser = new ExpressionParser();
-        GlobalExpression expression = parser.parse("count5");
-        System.out.println(expression.evaluate(1, 2, 3));
 
         /*
          * simplify (y * (z * (-1 + y)))
@@ -20,28 +21,39 @@ public class Main {
          * 14
          *
          */
-        // while (true) {
-        // try {
-        // System.out.print("Write expression: ");
-        // Scanner scanner = new Scanner(System.in);
-        // String expression = scanner.next();
-        // System.out.println();
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                String command = scanner.next();
+                String expression;
+                if (command.equals("calculate")) {
+                    expression = scanner.nextLine();
 
-        // System.out.println("Write variables");
-        // System.out.print("X: ");
-        // int X = scanner.nextInt();
-        // System.out.println();
-        // System.out.print("Y: ");
-        // int Y = scanner.nextInt();
-        // System.out.println();
-        // System.out.print("Z: ");
-        // int Z = scanner.nextInt();
-        // System.out.println();
-        // GlobalExpression result = parser.parse(expression);
-        // System.out.println("Result: " + result.evaluate(X, Y, Z));
-        // } catch (Exception e) {
-        // System.out.println("Failed to get input: " + e.getMessage());
-        // }
-        // }
+                    System.out.print("x=");
+                    double X = Double.parseDouble(scanner.nextLine());
+                    // System.out.println();
+                    System.out.print("y=");
+                    double Y = Double.parseDouble(scanner.nextLine());
+                    // System.out.println();
+                    System.out.print("z=");
+                    double Z = Double.parseDouble(scanner.nextLine());
+                    // System.out.println();
+                    GlobalExpression result = parser.parse(expression);
+                    System.out.println(result.evaluate(X, Y, Z));
+                } else if (command.equals("simplify")) {
+                    expression = scanner.nextLine();
+
+                    GlobalExpression result = parser.parse(expression);
+                    StringBuilder sb = new StringBuilder();
+                    result.toMiniString(sb);
+                    System.out.println(sb.toString());
+                } else {
+                    System.out.println(command + " is not a command, try again.");
+                    scanner.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Failed to get input: " + e.getMessage());
+            }
+        }
     }
 }

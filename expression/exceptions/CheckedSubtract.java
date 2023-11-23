@@ -1,4 +1,5 @@
 package expression.exceptions;
+
 import expression.*;
 
 public class CheckedSubtract extends Subtract {
@@ -8,7 +9,7 @@ public class CheckedSubtract extends Subtract {
     }
 
     @Override
-    public int calculate(int x, int y) {
+    public double calculate(double x, double y) {
         CalculationChecker.checkSubtract(x, y);
         return x - y;
     }

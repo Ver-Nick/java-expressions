@@ -1,4 +1,5 @@
 package expression.exceptions;
+
 import expression.*;
 
 public class CheckedAdd extends Add {
@@ -8,7 +9,7 @@ public class CheckedAdd extends Add {
     }
 
     @Override
-    public int calculate(int x, int y) {
+    public double calculate(double x, double y) {
         CalculationChecker.checkAdd(x, y);
         return x + y;
     }

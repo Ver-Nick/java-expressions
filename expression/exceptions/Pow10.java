@@ -1,4 +1,5 @@
 package expression.exceptions;
+
 import expression.*;
 
 public class Pow10 extends AbstractUnaryOperation {
@@ -14,12 +15,6 @@ public class Pow10 extends AbstractUnaryOperation {
     @Override
     public int getPriority() {
         return 5;
-    }
-
-    @Override
-    public int calculate(int x) {
-        CalculationChecker.checkPow10(x);
-        return (int) Math.pow(10, x);
     }
 
     @Override

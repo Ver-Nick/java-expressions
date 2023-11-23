@@ -11,18 +11,13 @@ public abstract class AbstractUnaryOperation extends AbstractExpression implemen
     }
 
     @Override
-    public int evaluate(int x) {
-        return this.calculate(expression.evaluate(x));
-    }
-
-    @Override
-    public int evaluate(int x, int y, int z) {
-        return this.calculate(expression.evaluate(x, y, z));
-    }
-
-    @Override
     public double evaluate(double x) {
         return this.calculate(expression.evaluate(x));
+    }
+
+    @Override
+    public double evaluate(double x, double y, double z) {
+        return this.calculate(expression.evaluate(x, y, z));
     }
 
     @Override
@@ -54,9 +49,9 @@ public abstract class AbstractUnaryOperation extends AbstractExpression implemen
     @Override
     public void toMiniString(StringBuilder builder) {
         builder.append(getSymbol());
-        if (expression instanceof AbstractValue || expression instanceof Negative || 
-        expression instanceof Count || expression instanceof CheckedNegate || 
-        expression instanceof Log10 || expression instanceof Pow10) {
+        if (expression instanceof AbstractValue || expression instanceof Negative ||
+                expression instanceof Count || expression instanceof CheckedNegate ||
+                expression instanceof Log10 || expression instanceof Pow10) {
             builder.append(" ");
         }
         if (expression instanceof AbstractOperation) {

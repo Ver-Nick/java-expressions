@@ -17,11 +17,6 @@ public class Set extends AbstractOperation {
     }
 
     @Override
-    public int calculate(int x, int y) {
-        return x | (1 << y);
-    }
-
-    @Override
     public double calculate(double x, double y) {
         throw new UnsupportedOperationException("Can't set bits on double");
     }

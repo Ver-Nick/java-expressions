@@ -3,24 +3,14 @@ package expression;
 public class Const extends AbstractValue {
     private final Number constValue;
 
-    public Const(int x){
+    public Const(int x) {
         super(x + "");
         constValue = x;
     }
 
-    public Const(double x){
+    public Const(double x) {
         super(x + "");
         constValue = x;
-    }
-
-    @Override
-    public int evaluate(int x) {
-        return constValue.intValue();
-    }
-
-    @Override
-    public int evaluate(int x, int y, int z) {
-        return constValue.intValue();
     }
 
     @Override
@@ -38,6 +28,11 @@ public class Const extends AbstractValue {
 
     @Override
     public double evaluate(double x) {
+        return constValue.doubleValue();
+    }
+
+    @Override
+    public double evaluate(double x, double y, double z) {
         return constValue.doubleValue();
     }
 }

@@ -6,12 +6,7 @@ public class Variable extends AbstractValue {
     }
 
     @Override
-    public int evaluate(int x) {
-        return x;
-    }
-
-    @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (obj instanceof Variable a) {
             return value.equals(a.value);
         }
@@ -24,14 +19,14 @@ public class Variable extends AbstractValue {
     }
 
     @Override
-    public int evaluate(int x, int y, int z) {
-        if(value.equals("x")){
+    public double evaluate(double x, double y, double z) {
+        if (value.equals("x")) {
             return x;
         }
-        if(value.equals("y")){
+        if (value.equals("y")) {
             return y;
         }
-        if(value.equals("z")){
+        if (value.equals("z")) {
             return z;
         }
         return 0;

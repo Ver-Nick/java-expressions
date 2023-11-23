@@ -92,7 +92,7 @@ class Parser extends BaseParser {
         return sb.toString();
     }
 
-    private int getNumber(boolean negative) {
+    private double getNumber(boolean negative) {
         skipWhitespace();
         StringBuilder sb = new StringBuilder();
         if (negative) {
@@ -101,7 +101,12 @@ class Parser extends BaseParser {
         while (between('0', '9')) {
             sb.append(take());
         }
-        return Integer.parseInt(sb.toString());
+        if (take('.')) {
+            while (between('0', '9')) {
+                sb.append(take());
+            }
+        }
+        return Double.parseDouble(sb.toString());
     }
 
     private GlobalExpression convertOperation(GlobalExpression first, String operation, GlobalExpression second) {

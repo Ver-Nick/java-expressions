@@ -17,11 +17,6 @@ public class Count extends AbstractUnaryOperation {
     }
 
     @Override
-    public int calculate(int x) {
-        return Integer.bitCount(x);
-    }
-
-    @Override
     public double calculate(double x) {
         return Integer.bitCount((int) x);
     }

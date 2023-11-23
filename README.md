@@ -1,47 +1,51 @@
-# java-expressions
+<h2>Калькулятор выражений на Java</h2>
 
-Program supports integer calculations on three variables.
+Программа позволяет
+
+- считать выражения с тремя переменными
+- упрощать их(избавлять от лишних скобок)
+
+<h3>Запуск</h3>
+Необходим JDK 17+.
+
+Из корня проекта:
 
 ```
-Write expression: x*x+y*y+z*z
+javac expression/*.java
+java expression/Main
+```
 
-Write variables
-X: 1
+Пример работы:
 
-Y: 2
+```
+calculate x*x+y*y+z*z
+x=1.12
+y=2.23
+z=3.43
+17.9922
 
-Z: 3
+calculate (2*x+y)/z+32
+x=3
+y=10
+z=8
+34.0
 
-Result: 14
-Write expression: (2*x+y)/z+32
+simplify (y * (z * (-1 + y)))
+y * z * (-1.0 + y)
 
-Write variables
-X: 3
+simplify ((2 / (x - 1)) / 2)
+2.0 / (x - 1.0) / 2.0
 
-Y: 10
+calculate -(1/3+34/50)*11
+x=0
+y=0
+z=0
+-11.146666666666668
 
-Z: 8
-
-Result: 34
-Write expression: 34/2+(3-2)*50
-
-Write variables
-X: 0
-
-Y: 0
-
-Z: 0
-
-Result: 67
-Write expression: qwe
-
-Write variables
-X: 0
-
-Y: 0
-
-Z: 0
-
-Failed to get input: Unknown sequence: qwe at position 3
+calculate qwe
+x=0
+y=0
+z=0
+Failed to get input: Unknown sequence: qwe at position 4
 
 ```

@@ -12,16 +12,12 @@ public abstract class AbstractOperation extends AbstractExpression implements Op
         this.second = second;
     }
 
-    public int evaluate(int x) {
-        return this.calculate(first.evaluate(x), second.evaluate(x));
-    }
-
-    public int evaluate(int x, int y, int z) {
-        return this.calculate(first.evaluate(x, y, z), second.evaluate(x, y, z));
-    }
-
     public double evaluate(double x) {
         return this.calculate(first.evaluate(x), second.evaluate(x));
+    }
+
+    public double evaluate(double x, double y, double z) {
+        return this.calculate(first.evaluate(x, y, z), second.evaluate(x, y, z));
     }
 
     // public double evaluate(double x, double y, double z) {

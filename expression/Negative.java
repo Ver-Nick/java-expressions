@@ -17,13 +17,8 @@ public class Negative extends AbstractUnaryOperation {
     }
 
     @Override
-    public int calculate(int x) {
-        return -x;
-    }
-
-    @Override
     public double calculate(double x) {
         return -x;
     }
-    
+
 }
