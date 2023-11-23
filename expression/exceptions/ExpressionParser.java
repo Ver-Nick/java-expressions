@@ -2,19 +2,19 @@ package expression.exceptions;
 
 import expression.*;
 
-public class ExpressionParser implements TripleParser {
-    @Override
-    public TripleExpression parse(String expression) {
+public class ExpressionParser implements ParserInterface {
+    public GlobalExpression parse(String expression) {
         return new Parser(new StringCharSource(expression)).parse(expression);
     }
 }
+
 class Parser extends BaseParser {
 
     public Parser(CharSource source) {
         super(source);
     }
 
-    public TripleExpression parse(String expression) {
+    public GlobalExpression parse(String expression) {
         GlobalExpression res = parseSetClear();
         if (take(')')) {
             throw new NoBracketException("Unexpected ')' at position " + getPos());
@@ -36,8 +36,7 @@ class Parser extends BaseParser {
                     throw new UnknownSequenceException(token + " at position " + getPos());
                 }
                 first = convertOperation(first, "clear", parseAddSub());
-            }
-            else if (test('s')) {
+            } else if (test('s')) {
                 String token = getSequence();
                 if (!token.equals("set")) {
                     throw new UnknownSequenceException(token + " at position " + getPos());
@@ -141,15 +140,16 @@ class Parser extends BaseParser {
         }
     }
 
-    private GlobalExpression convertOperation(GlobalExpression first, String operation, GlobalExpression second){
-        return switch(operation){
+    private GlobalExpression convertOperation(GlobalExpression first, String operation, GlobalExpression second) {
+        return switch (operation) {
             case "+" -> new CheckedAdd(first, second);
             case "-" -> new CheckedSubtract(first, second);
             case "*" -> new CheckedMultiply(first, second);
             case "/" -> new CheckedDivide(first, second);
             case "set" -> new Set(first, second);
             case "clear" -> new Clear(first, second);
-            default -> throw new UnexpectedSymbolException("Unexpected symbol: " + operation + " at position " + getPos());
+            default ->
+                throw new UnexpectedSymbolException("Unexpected symbol: " + operation + " at position " + getPos());
         };
     }
 }

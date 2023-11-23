@@ -12,7 +12,6 @@ public abstract class AbstractExpression implements GlobalExpression {
         return builder.toString();
     }
 
-    @Override
     public String toMiniString() {
         if (miniBuilder.isEmpty()) {
             toMiniString(miniBuilder);

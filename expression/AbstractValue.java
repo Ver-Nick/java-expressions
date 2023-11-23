@@ -3,7 +3,7 @@ package expression;
 public abstract class AbstractValue extends AbstractExpression {
     protected String value;
 
-    public AbstractValue(String s){
+    public AbstractValue(String s) {
         this.value = s;
     }
 

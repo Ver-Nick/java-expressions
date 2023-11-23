@@ -2,18 +2,18 @@ package expression.parser;
 
 import expression.*;
 
-public class ExpressionParser implements TripleParser {
-    @Override
-    public TripleExpression parse(String expression) {
+public class ExpressionParser implements ParserInterface {
+    public GlobalExpression parse(String expression) {
         return new Parser(new StringCharSource(expression)).parse(expression);
     }
 }
+
 class Parser extends BaseParser {
     public Parser(CharSource source) {
         super(source);
     }
 
-    public TripleExpression parse(String expression) {
+    public GlobalExpression parse(String expression) {
         return parseSetClear();
     }
 
@@ -86,7 +86,7 @@ class Parser extends BaseParser {
     private String getIdentifier() {
         skipWhitespace();
         StringBuilder sb = new StringBuilder();
-        while(between('a', 'z') || between('A', 'Z') || between('0', '9')){
+        while (between('a', 'z') || between('A', 'Z') || between('0', '9')) {
             sb.append(take());
         }
         return sb.toString();
@@ -95,17 +95,17 @@ class Parser extends BaseParser {
     private int getNumber(boolean negative) {
         skipWhitespace();
         StringBuilder sb = new StringBuilder();
-        if(negative){
+        if (negative) {
             sb.append('-');
         }
-        while(between('0', '9')){
+        while (between('0', '9')) {
             sb.append(take());
         }
         return Integer.parseInt(sb.toString());
     }
 
-    private GlobalExpression convertOperation(GlobalExpression first, String operation, GlobalExpression second){
-        return switch(operation){
+    private GlobalExpression convertOperation(GlobalExpression first, String operation, GlobalExpression second) {
+        return switch (operation) {
             case "+" -> new Add(first, second);
             case "-" -> new Subtract(first, second);
             case "*" -> new Multiply(first, second);
